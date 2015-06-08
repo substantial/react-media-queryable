@@ -21,6 +21,9 @@
     "url": "https://github.com/substantial/react-media-queryable/issues"
   },
   "homepage": "https://github.com/substantial/react-media-queryable",
+  "dependencies": {
+    "media-listener": "0.0.1"
+  },
   "peerDependencies": {
     "react": "*"
   },

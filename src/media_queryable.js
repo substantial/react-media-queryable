@@ -1,12 +1,12 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['React'], factory);
+    define(['React', 'MediaListener'], factory);
   } else if (typeof exports === 'object') {
-    module.exports = factory(require('React'));
+    module.exports = factory(require('React'), require('MediaListener'));
   } else {
-    root.MediaQueryable = factory(root.React);
+    root.MediaQueryable = factory(root.React, root.MediaListener);
   }
-}(this, function (React) {
+}(this, function (React, MediaListener) {
   var MediaQueryableMixin = function(mediaQueries) {
     return {
       getInitialState: function() {
