@@ -2,6 +2,7 @@
   "name": "react-media-queryable",
   "version": "0.0.1",
   "description": "Trigger state update on media query change.",
+  "main": "dist/media_queryable.js",
   "scripts": {
     "test": "null"
   },
@@ -28,6 +29,7 @@
     "gulp": "^3.9.0",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-uglify": "^1.2.0",
+    "gulp-umd": "^0.2.0",
     "gulp-util": "^3.0.5",
     "react-tools": "0.13.3",
     "reactify": "^1.1.1",
