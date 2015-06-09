@@ -2,7 +2,7 @@
   "name": "react-media-queryable",
   "version": "0.0.1",
   "description": "Trigger state update on media query change.",
-  "main": "null",
+  "main": "index.js",
   "scripts": {
     "test": "null"
   },
@@ -21,13 +21,18 @@
     "url": "https://github.com/substantial/react-media-queryable/issues"
   },
   "homepage": "https://github.com/substantial/react-media-queryable",
-  "dependencies": {
-    "media-listener": "0.0.1"
-  },
   "peerDependencies": {
     "react": "*"
   },
   "devDependencies": {
-    "react-tools": "0.13.3"
+    "browserify": "^10.2.4",
+    "gulp": "^3.9.0",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-uglify": "^1.2.0",
+    "gulp-util": "^3.0.5",
+    "react-tools": "0.13.3",
+    "reactify": "^1.1.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
