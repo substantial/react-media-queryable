@@ -1,10 +1,10 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(['React'], factory);
+    define(['react'], factory);
   } else if (typeof exports === 'object') {
     module.exports = factory(require('react'));
   } else {
-    root.mediaQueryable = factory(root.React);
+    root.MediaQueryable = factory(root.React);
   }
 }(this, function (React) {
   return React.createClass({
