@@ -8,16 +8,6 @@ module.exports = React.createClass({
     };
   },
 
-  childContextTypes: {
-    mediaQuery: React.PropTypes.string
-  },
-
-  getChildContext: function() {
-    return {
-      mediaQuery: this.state.mediaQuery
-    }
-  },
-
   componentDidMount: function() {
     for (name in this.props.mediaQueries) {
       this._setupMediaQuery(name);
@@ -29,8 +19,11 @@ module.exports = React.createClass({
       return null;
     }
 
-    console.log("rendering media queryable");
-    return React.DOM.div({children: this.props.children});
+    var renderedChildren = React.Children.map(this.props.children, function(child) {
+      child.props.mediaQuery = this.state.mediaQuery;
+      return child;
+    }.bind(this));
+    return React.DOM.div({children: renderedChildren});
   },
 
   _setupMediaQuery: function(name) {
@@ -47,4 +40,5 @@ module.exports = React.createClass({
       this.setState({mediaQuery: name});
     }
   }
+
 });
