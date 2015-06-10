@@ -31,7 +31,7 @@ var mediaQueries = {
 ```
 
 `MyComponent` will now get a `mediaQuery` prop that will be set to the currently matched
-media query name:
+media query name and can render itself using that information:
 
 ```js
 var MyComponent = React.createClass({
@@ -45,8 +45,7 @@ var MyComponent = React.createClass({
 });
 ```
 
-The media query object that you pass into the `MediaQueryable` component can contain any
-browser-supported media query definitions.
+Whenever a new media query is matched (i.e. screen rotation or browser window resize), the `mediaQuery` prop will update, forcing a re-render of the child component. The media query object that you pass into the `MediaQueryable` component can contain any browser-supported media query definitions.
 
 Compatibility
 -------------
