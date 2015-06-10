@@ -1,4 +1,5 @@
 var React = require('react');
+var MediaListener = require('./media_listener');
 
 module.exports = React.createClass({
   displayName: 'MediaQueryable',
@@ -10,9 +11,7 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function() {
-    for (name in this.props.mediaQueries) {
-      this._setupMediaQuery(name);
-    }
+    new MediaListener(this.props.mediaQueries, this._onMediaQueryChange);
   },
 
   render: function() {
@@ -26,18 +25,9 @@ module.exports = React.createClass({
     return React.DOM.div({children: renderedChildren});
   },
 
-  _setupMediaQuery: function(name) {
-    var mql = window.matchMedia(this.props.mediaQueries[name]);
-    mql.addListener((function(e) {
-      this._handleMediaQueryChange(e.matches, name);
-    }).bind(this));
-
-    this._handleMediaQueryChange(mql.matches, name);
-  },
-
-  _handleMediaQueryChange: function(matches, name) {
-    if (matches) {
-      this.setState({mediaQuery: name});
-    }
+  _onMediaQueryChange: function(name) {
+    this.setState({
+      mediaQuery: name
+    });
   }
 });
