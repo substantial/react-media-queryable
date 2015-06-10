@@ -13,9 +13,11 @@
   "keywords": [
     "react",
     "media",
-    "query"
+    "query",
+    "adaptive",
+    "responsive"
   ],
-  "author": "",
+  "author": "Substantial",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/substantial/react-media-queryable/issues"

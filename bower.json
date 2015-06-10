@@ -15,7 +15,9 @@
   "keywords": [
     "react",
     "media",
-    "query"
+    "query",
+    "adaptive",
+    "responsive"
   ],
   "license": "MIT",
   "private": true,
