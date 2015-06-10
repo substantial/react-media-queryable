@@ -1,48 +1,27 @@
 'use strict';
 
-var browserify = require('browserify');
 var gulp = require('gulp');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-var gutil = require('gulp-util');
-var sourcemaps = require('gulp-sourcemaps');
+var webpack = require('webpack-stream');
 var uglify = require('gulp-uglify');
-var reactify = require('reactify');
-var umd = require('gulp-umd');
+var sourcemaps = require('gulp-sourcemaps');
+var rename = require('gulp-rename');
+var path = require('path');
 
-gulp.task('javascript', function () {
-  var b = browserify({
-    entries: './index.js',
-    debug: true,
-    transform: [ reactify ]
-  });
-  b.external('react');
+var basename = 'media_queryable';
 
-  return b.bundle()
-    .pipe(source('media_queryable.js'))
-    .pipe(buffer())
+gulp.task('bundle', function() {
+  return gulp.src(path.join('src', basename + '.js'))
+    .pipe(webpack(require('./webpack.config.js')))
+    .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('compress', ['bundle'], function() {
+  return gulp.src(path.join('dist', basename + '.js'))
+    .pipe(uglify())
     .pipe(sourcemaps.init({loadMaps: true}))
-    .on('error', gutil.log)
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('./dist/'));
+    .pipe(rename(basename + '.min.js'))
+    .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('umd', ['javascript'], function() {
-  return gulp.src('dist/media_queryable.js')
-    .pipe(umd({
-      exports: function(file) {
-        return "MediaQueryable";
-      },
-      dependencies: function(file) {
-        return [
-          {
-            name: 'react',
-            param: 'React'
-          }
-        ];
-      }
-    }))
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('default', ['umd']);
+gulp.task('default', ['compress']);

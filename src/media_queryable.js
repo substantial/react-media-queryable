@@ -1,5 +1,8 @@
 var React = require('react');
+
 module.exports = React.createClass({
+  displayName: 'MediaQueryable',
+
   getInitialState: function() {
     return {
       mediaQuery: undefined
