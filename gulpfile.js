@@ -10,7 +10,7 @@ var path = require('path');
 var basename = 'media_queryable';
 
 gulp.task('bundle', function() {
-  return gulp.src(path.join('src', basename + '.js'))
+  return gulp.src(path.join('index.js'))
     .pipe(webpack(require('./webpack.config.js')))
     .pipe(gulp.dest('dist/'));
 });
