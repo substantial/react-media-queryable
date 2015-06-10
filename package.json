@@ -2,7 +2,7 @@
   "name": "react-media-queryable",
   "version": "1.0.0",
   "description": "Trigger state update on media query change.",
-  "main": "dist/media_queryable.js",
+  "main": "react_media_queryable.js",
   "scripts": {
     "test": "null"
   },

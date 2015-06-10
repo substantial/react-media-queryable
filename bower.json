@@ -1,7 +1,7 @@
 {
   "name": "react-media-queryable",
-  "main": "index.js",
-  "version": "0.0.1",
+  "main": "react_media_queryable.js",
+  "version": "1.0.0",
   "homepage": "https://github.com/substantial/react-media-queryable",
   "authors": [
     "Substantial"

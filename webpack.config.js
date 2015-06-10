@@ -2,7 +2,7 @@ var path = require('path');
 
 module.exports = {
   output: {
-    filename: 'media_queryable.js',
+    filename: './react_media_queryable.js',
     library: 'MediaQueryable',
     libraryTarget: 'umd'
   },
