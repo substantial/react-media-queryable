@@ -59,6 +59,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	module.exports = React.createClass({
 	  displayName: 'MediaQueryable',
+	  mediaListener: null,
 
 	  getInitialState: function() {
 	    return {
@@ -67,7 +68,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  componentDidMount: function() {
-	    new MediaListener(this.props.mediaQueries, this._onMediaQueryChange);
+	    this.mediaListener = new MediaListener(this.props.mediaQueries, this._onMediaQueryChange);
+	  },
+
+	  componentWillUnmount: function() {
+	    this.mediaListener.stopListening();
 	  },
 
 	  render: function() {
@@ -100,21 +105,36 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	function MediaListener(mediaQueries, changeHandler) {
-	  this.mediaQueries = mediaQueries;
 	  this.changeHandler = changeHandler;
-
-	  var mediaQuery;
-	  for (mediaQuery in this.mediaQueries) {
-	    this._setupMediaQuery(mediaQuery);
-	  }
+	  this.mqls = this._buildMediaQueryLists(mediaQueries);
 	}
 
-	MediaListener.prototype._setupMediaQuery = function(name) {
-	  var mql = window.matchMedia(this.mediaQueries[name]);
+	MediaListener.prototype.stopListening = function() {
+	  var name;
+	  for (name in this.mqls) {
+	    this.mqls[name].removeListener(this._handleMediaQueryChange);
+	  }
+	};
+
+	MediaListener.prototype._buildMediaQueryLists = function(mediaQueries) {
+	  var mqls = {};
+	  var name;
+	  for (name in mediaQueries) {
+	    var mql = this._setupListeners(name, mediaQueries[name]);
+	    mqls[name] = mql;
+
+	    this._handleMediaQueryChange(mql.matches, name);
+	  }
+	  return mqls;
+	};
+
+	MediaListener.prototype._setupListeners = function(name, mediaQuery) {
+	  var mql = window.matchMedia(mediaQuery);
 	  mql.addListener(function(e) {
 	    return this._handleMediaQueryChange(e.matches, name);
 	  }.bind(this));
-	  return this._handleMediaQueryChange(mql.matches, name);
+
+	  return mql;
 	};
 
 	MediaListener.prototype._handleMediaQueryChange = function(matches, name) {

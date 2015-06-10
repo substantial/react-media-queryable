@@ -3,6 +3,7 @@ var MediaListener = require('./media_listener');
 
 module.exports = React.createClass({
   displayName: 'MediaQueryable',
+  mediaListener: null,
 
   getInitialState: function() {
     return {
@@ -11,7 +12,11 @@ module.exports = React.createClass({
   },
 
   componentDidMount: function() {
-    new MediaListener(this.props.mediaQueries, this._onMediaQueryChange);
+    this.mediaListener = new MediaListener(this.props.mediaQueries, this._onMediaQueryChange);
+  },
+
+  componentWillUnmount: function() {
+    this.mediaListener.stopListening();
   },
 
   render: function() {
