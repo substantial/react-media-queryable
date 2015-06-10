@@ -1,6 +1,6 @@
 {
   "name": "react-media-queryable",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Trigger state update on media query change.",
   "main": "dist/media_queryable.js",
   "scripts": {
@@ -16,7 +16,7 @@
     "query"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/substantial/react-media-queryable/issues"
   },
