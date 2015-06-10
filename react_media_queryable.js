@@ -76,14 +76,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  render: function() {
-	    if (this.state.mediaQuery == undefined) {
+	    var mediaQuery = this._currentMediaQuery();
+	    if (!mediaQuery) {
 	      return null;
 	    }
 
 	    var renderedChildren = React.Children.map(this.props.children, function(child) {
-	      return React.cloneElement(child, { mediaQuery: this.state.mediaQuery } );
-	    }.bind(this));
+	      return React.cloneElement(child, { mediaQuery: this._currentMediaQuery() } );
+	    }, this);
 	    return React.DOM.div({children: renderedChildren});
+	  },
+
+	  _currentMediaQuery: function() {
+	    return this.state.mediaQuery || this.props.defaultMediaQuery || null;
 	  },
 
 	  _onMediaQueryChange: function(name) {
@@ -103,6 +108,8 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ },
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
+
+	var global = __webpack_require__(3);
 
 	function MediaListener(mediaQueries, changeHandler) {
 	  this.changeHandler = changeHandler;
@@ -144,6 +151,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	module.exports = MediaListener;
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var window = window || {
+	  matchMedia: function() {
+	    return {
+	      addListener: function() {},
+	      removeListener: function() {}
+	    };
+	  }
+	};
+	module.exports = window;
 
 
 /***/ }

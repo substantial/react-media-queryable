@@ -20,14 +20,19 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    if (this.state.mediaQuery == undefined) {
+    var mediaQuery = this._currentMediaQuery();
+    if (!mediaQuery) {
       return null;
     }
 
     var renderedChildren = React.Children.map(this.props.children, function(child) {
-      return React.cloneElement(child, { mediaQuery: this.state.mediaQuery } );
-    }.bind(this));
+      return React.cloneElement(child, { mediaQuery: this._currentMediaQuery() } );
+    }, this);
     return React.DOM.div({children: renderedChildren});
+  },
+
+  _currentMediaQuery: function() {
+    return this.state.mediaQuery || this.props.defaultMediaQuery || null;
   },
 
   _onMediaQueryChange: function(name) {
