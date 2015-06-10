@@ -19,7 +19,7 @@ Usage
 Use it like any other React component, passing it a set of named media queries as `props`:
 
 ```js
-var MediaQueryable = require('react-media-queryable');
+var MediaQueryable = require('react-media-queryable'); // also available via amd define or window global
 var mediaQueries = {
   small: "(max-width: 800px)",
   large: "(min-width: 801px)"
