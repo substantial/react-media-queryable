@@ -23,6 +23,9 @@
   "private": true,
   "ignore": [
     "**/.*",
-    "node_modules"
+    "node_modules",
+    "gulpfile.js",
+    "webpack.config.js",
+    "src"
   ]
 }
