@@ -1,0 +1,29 @@
+{
+  "name": "react-media-queryable",
+  "main": "index.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/substantial/react-media-queryable",
+  "authors": [
+    "Substantial"
+  ],
+  "description": "Trigger state update on media query change.",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "react",
+    "media",
+    "query"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
