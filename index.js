@@ -1,1 +1,1 @@
-require('./src/media_queryable');
+module.exports = require('./src/media_queryable');
