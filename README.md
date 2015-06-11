@@ -25,13 +25,14 @@ var mediaQueries = {
   large: "(min-width: 801px)"
 };
 
-<MediaQueryable mediaQueries={mediaQueries}>
+<MediaQueryable mediaQueries={mediaQueries} defaultMediaQuery="small">
   <MyComponent />
 </MediaQueryable>
 ```
 
-`MyComponent` will now get a `mediaQuery` prop that will be set to the currently matched
-media query name and can render itself using that information:
+You can also optionally specify a `defaultMediaQuery` prop, which will get used when no other media queries match. This can also be useful if you're rendering your component server side.
+
+`MyComponent` will now get a `mediaQuery` prop that will be set to the currently matched media query name and can render itself using that information:
 
 ```js
 var MyComponent = React.createClass({
