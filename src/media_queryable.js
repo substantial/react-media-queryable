@@ -1,5 +1,6 @@
 var React = require('react');
 var MediaListener = require('./media_listener');
+var assign = require('react/lib/Object.assign');
 
 module.exports = React.createClass({
   displayName: 'MediaQueryable',
@@ -28,7 +29,7 @@ module.exports = React.createClass({
     var renderedChildren = React.Children.map(this.props.children, function(child) {
       return React.cloneElement(child, { mediaQuery: this._currentMediaQuery() } );
     }, this);
-    return React.DOM.div({children: renderedChildren});
+    return React.DOM.div(assign({}, this.props, {children: renderedChildren}));
   },
 
   _currentMediaQuery: function() {

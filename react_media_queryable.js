@@ -56,6 +56,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var React = __webpack_require__(1);
 	var MediaListener = __webpack_require__(2);
+	var assign = __webpack_require__(3);
 
 	module.exports = React.createClass({
 	  displayName: 'MediaQueryable',
@@ -84,7 +85,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var renderedChildren = React.Children.map(this.props.children, function(child) {
 	      return React.cloneElement(child, { mediaQuery: this._currentMediaQuery() } );
 	    }, this);
-	    return React.DOM.div({children: renderedChildren});
+	    return React.DOM.div(assign({}, this.props, {children: renderedChildren}));
 	  },
 
 	  _currentMediaQuery: function() {
@@ -101,15 +102,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ },
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var global = __webpack_require__(3);
+/***/ function(module, exports) {
 
 	function MediaListener(mediaQueries, changeHandler) {
 	  this.changeHandler = changeHandler;
@@ -155,18 +154,55 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	var window = window || {
-	  matchMedia: function() {
-	    return {
-	      addListener: function() {},
-	      removeListener: function() {}
-	    };
+	/**
+	 * Copyright 2014-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule Object.assign
+	 */
+
+	// https://people.mozilla.org/~jorendorff/es6-draft.html#sec-object.assign
+
+	'use strict';
+
+	function assign(target, sources) {
+	  if (target == null) {
+	    throw new TypeError('Object.assign target cannot be null or undefined');
 	  }
-	};
-	module.exports = window;
 
+	  var to = Object(target);
+	  var hasOwnProperty = Object.prototype.hasOwnProperty;
+
+	  for (var nextIndex = 1; nextIndex < arguments.length; nextIndex++) {
+	    var nextSource = arguments[nextIndex];
+	    if (nextSource == null) {
+	      continue;
+	    }
+
+	    var from = Object(nextSource);
+
+	    // We don't currently support accessors nor proxies. Therefore this
+	    // copy cannot throw. If we ever supported this then we must handle
+	    // exceptions and side-effects. We don't support symbols so they won't
+	    // be transferred.
+
+	    for (var key in from) {
+	      if (hasOwnProperty.call(from, key)) {
+	        to[key] = from[key];
+	      }
+	    }
+	  }
+
+	  return to;
+	}
+
+	module.exports = assign;
 
 /***/ }
 /******/ ])
