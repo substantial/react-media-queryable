@@ -1,6 +1,6 @@
 {
   "name": "react-media-queryable",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Trigger state update on media query change.",
   "main": "react_media_queryable.js",
   "scripts": {
