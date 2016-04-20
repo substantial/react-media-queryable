@@ -73,7 +73,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  componentWillUnmount: function() {
-	    this.mediaListener.stopListening();
+	    if (this.mediaListener) {
+	      this.mediaListener.stopListening();
+	    }
 	  },
 
 	  render: function() {
@@ -102,13 +104,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 1 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ },
 /* 2 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	function MediaListener(mediaQueries, changeHandler) {
 	  this.changeHandler = changeHandler;
@@ -154,7 +156,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 3 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Copyright 2014-2015, Facebook, Inc.
@@ -203,6 +205,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	module.exports = assign;
+
 
 /***/ }
 /******/ ])

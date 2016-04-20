@@ -17,7 +17,9 @@ module.exports = React.createClass({
   },
 
   componentWillUnmount: function() {
-    this.mediaListener.stopListening();
+    if (this.mediaListener) {
+      this.mediaListener.stopListening();
+    }
   },
 
   render: function() {
