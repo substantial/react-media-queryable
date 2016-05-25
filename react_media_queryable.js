@@ -122,11 +122,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	MediaListener.prototype.stopListening = function() {
 	  var name;
 	  for (name in this.mqls) {
-	    this.mqls[name].removeListener(this._handleMediaQueryChange);
+	    this.mqls[name].removeListener &&
+	      this.mqls[name].removeListener(this._handleMediaQueryChange);
 	  }
 	};
 
 	MediaListener.prototype._buildMediaQueryLists = function(mediaQueries) {
+	  if (!window.matchMedia) return {};
+
 	  var mqls = {};
 	  var name;
 	  for (name in mediaQueries) {
@@ -139,6 +142,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	MediaListener.prototype._setupListeners = function(name, mediaQuery) {
+	  if (!window.matchMedia) return;
+
 	  var mql = window.matchMedia(mediaQuery);
 	  mql.addListener(function(e) {
 	    return this._handleMediaQueryChange(e.matches, name);
