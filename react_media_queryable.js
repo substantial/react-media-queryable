@@ -61,6 +61,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = React.createClass({
 	  displayName: 'MediaQueryable',
 	  mediaListener: null,
+	  propTypes: {
+	    defaultMediaQuery: React.PropTypes.string.isRequired,
+	    mediaQueries: React.PropTypes.object.isRequired,
+	  },
 
 	  getInitialState: function() {
 	    return {
