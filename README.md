@@ -30,7 +30,10 @@ var mediaQueries = {
 </MediaQueryable>
 ```
 
-You can also optionally specify a `defaultMediaQuery` prop, which will get used when no other media queries match. This can also be useful if you're rendering your component server side.
+You must also specify a `defaultMediaQuery` prop, which will get used when no
+other media queries match. If a browser does not support matchMedia, the
+children will will always receive the default. This is also useful if you're
+rendering your component server side.
 
 `MyComponent` will now get a `mediaQuery` prop that will be set to the currently matched media query name and can render itself using that information:
 
