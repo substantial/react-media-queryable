@@ -65,7 +65,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    className: React.PropTypes.string,
 	    defaultMediaQuery: React.PropTypes.string.isRequired,
 	    mediaQueries: React.PropTypes.object.isRequired,
-	    style: React.PropTyps.object
+	    style: React.PropTypes.object
 	  },
 
 	  getInitialState: function() {
