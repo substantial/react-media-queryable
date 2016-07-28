@@ -93,7 +93,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        return React.cloneElement(child, { mediaQuery: this._currentMediaQuery() } );
 	      }
 	    }, this);
-	    return React.DOM.div(assign({}, {}, {children: renderedChildren}));
+	    return React.DOM.div(assign({}, {children: renderedChildren, className: this.props.className, style: this.props.style}));
 	  },
 
 	  _currentMediaQuery: function() {
