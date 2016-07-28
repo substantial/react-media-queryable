@@ -6,8 +6,10 @@ module.exports = React.createClass({
   displayName: 'MediaQueryable',
   mediaListener: null,
   propTypes: {
+    className: React.PropTypes.string,
     defaultMediaQuery: React.PropTypes.string.isRequired,
     mediaQueries: React.PropTypes.object.isRequired,
+    style: React.PropTyps.object
   },
 
   getInitialState: function() {
