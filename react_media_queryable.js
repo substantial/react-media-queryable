@@ -128,8 +128,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	MediaListener.prototype.stopListening = function() {
 	  var name;
 	  for (name in this.mqls) {
-	    this.mqls[name].removeListener &&
-	      this.mqls[name].removeListener(this._handleMediaQueryChange);
+	    var mql = this.mqls[name];
+	    mql.removeListener &&
+	      mql.removeListener(mql._fn);
 	  }
 	};
 
@@ -151,9 +152,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (!window.matchMedia) return;
 
 	  var mql = window.matchMedia(mediaQuery);
-	  mql.addListener(function(e) {
-	    return this._handleMediaQueryChange(e.matches, name);
-	  }.bind(this));
+	  mql._fn = function (e) {
+	      return this._handleMediaQueryChange(e.matches, name);
+	  }.bind(this);
+	  mql.addListener(mql._fn);
 
 	  return mql;
 	};
