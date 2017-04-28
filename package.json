@@ -1,10 +1,12 @@
 {
   "name": "react-media-queryable",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Trigger state update on media query change.",
-  "main": "react_media_queryable.js",
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.es.js",
   "scripts": {
-    "test": "null"
+    "build": "rollup -c",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -27,12 +29,23 @@
     "react": "*"
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sourcemaps": "^1.5.2",
-    "gulp-uglify": "^1.2.0",
-    "object-assign": "^4.1.0",
-    "webpack": "^1.9.10",
-    "webpack-stream": "^2.0.0"
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "rollup": "^0.41.6",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^3.0.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.8"
+  },
+  "babel": {
+    "presets": [
+      "react"
+    ],
+    "plugins": [
+      "transform-class-properties"
+    ]
   }
 }
