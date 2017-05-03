@@ -7,8 +7,7 @@ MediaListener.prototype.stopListening = function() {
   var name;
   for (name in this.mqls) {
     var mql = this.mqls[name];
-    mql.removeListener &&
-      mql.removeListener(mql._fn);
+    mql.removeListener && mql.removeListener(mql._fn);
   }
 };
 
@@ -30,8 +29,8 @@ MediaListener.prototype._setupListeners = function(name, mediaQuery) {
   if (!window.matchMedia) return;
 
   var mql = window.matchMedia(mediaQuery);
-  mql._fn = function (e) {
-      return this._handleMediaQueryChange(e.matches, name);
+  mql._fn = function(e) {
+    return this._handleMediaQueryChange(e.matches, name);
   }.bind(this);
   mql.addListener(mql._fn);
 
@@ -44,4 +43,4 @@ MediaListener.prototype._handleMediaQueryChange = function(matches, name) {
   }
 };
 
-module.exports = MediaListener;
+export default MediaListener;
